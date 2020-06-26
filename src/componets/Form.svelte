@@ -5,14 +5,14 @@
     export let name = "";
     export let price = 5;
 
-    $: mode = id ? "edit" : "add"
+    $: mode = id ? "edytuj" : "dodaj"
     $: canSubmit = name !== "" && price >= 0;
 
     function submit() {
         if (!canSubmit) { return; }
 
-        if (mode === 'add') {
-            materialStore.add(name, price)
+        if (mode === 'dodaj') {
+            materialStore.add(name, +price.toFixed(2))
         }
 
        cancel();
@@ -37,11 +37,11 @@
 
 <form on:submit|preventDefault={submit}>
     <fieldset>
-        <label for="nameField">Material</label>
-        <input type="text" id="nameField" placeholder="Wood, Glue Etc." bind:value={name}/>
+        <label for="nameField">Materiał</label>
+        <input type="text" id="nameField" placeholder="Drewno Klej Etc." bind:value={name}/>
 
-        <label for="priceField">Price</label>
-        <input type="number" id="priceField" placeholder="Price" min="0" step="any" bind:value={price}/>
+        <label for="priceField">Cena</label>
+        <input type="number" id="priceField" placeholder="Cena" min="0" step="any" bind:value={price}/>
     </fieldset>
     <button
        disabled={!canSubmit}
@@ -49,7 +49,7 @@
        type="submit">
         { mode }
     </button>
-    {#if mode === 'edit'}
-    <button  on:click={cancel} class="float-right" type="button">Cancel</button>
+    {#if mode === 'edytuj'}
+    <button  on:click={cancel} class="float-right" type="button">Anuluj</button>
     {/if}
 </form>
