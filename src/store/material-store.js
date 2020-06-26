@@ -19,6 +19,16 @@ const add = (name, price) => {
     })
 }
 
+const edit = (id, name, price) => {
+    materialStore.update(items => {
+        const index = items.findIndex(i => i.id === id);
+        items[index].name = name;
+        items[index].price = price;
+
+        return items;
+    })
+}
+
 materialStore.subscribe(items => {
     const jsonString = JSON.stringify(items)
     localStorage.setItem(key, jsonString)
@@ -26,5 +36,6 @@ materialStore.subscribe(items => {
 
 export default {
     subscribe: materialStore.subscribe,
-    add
+    add,
+    edit
 }
