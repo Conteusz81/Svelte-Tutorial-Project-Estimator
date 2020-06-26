@@ -2,8 +2,8 @@
     import materialStore from '../store/material-store.js'
 
     export let id;
-    export let name = "";
-    export let price = 5;
+    export let name;
+    export let price;
 
     $: mode = id ? "edytuj" : "dodaj"
     $: canSubmit = name !== "" && price >= 0;
@@ -13,6 +13,10 @@
 
         if (mode === 'dodaj') {
             materialStore.add(name, +price.toFixed(2))
+        }
+
+        if (mode === 'edytuj') {
+            materialStore.edit(id, name, price);
         }
 
        cancel();
