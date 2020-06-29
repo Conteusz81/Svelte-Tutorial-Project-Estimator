@@ -47,6 +47,12 @@
         transition: .3s;
     }
 
+    .icons i.remove-disabled {
+        cursor: auto;
+        opacity: .6;
+        transform: scale(1);
+    }
+
 </style>
 
 <table class="primary">
@@ -70,6 +76,7 @@
                     <i
                      on:click|stopPropagation={remove(material.id)}
                      class="fa fa-trash-o"
+                     class:remove-disabled="{mode === 'edytuj'}"
                      aria-hidden="true"
                     ></i>
                 </td>

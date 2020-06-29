@@ -11,8 +11,6 @@
     function submit() {
         if (!canSubmit) { return; }
 
-        console.log(mode);
-
         if (mode === 'dodaj') {
             materialStore.add(name, +price.toFixed(2))
         }
