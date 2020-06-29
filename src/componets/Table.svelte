@@ -3,6 +3,7 @@
     import materialStore from '../store/material-store.js';
 
     const dispatch = createEventDispatcher();
+    export let mode;
     let materials = [];
 
     materialStore.subscribe(items => {
@@ -20,15 +21,32 @@
         dispatch('edit', {id, name, price});
     }
 
+    function remove(id) {
+        if (mode === 'edytuj') { return; }
+        materialStore.remove(id)
+    }
+
 
 </script>
 <style>
     table {
         width: 100%;
     }
-    tr.product-row {
-        cursor: pointer;
+
+    .icons {
+       text-align: right;
     }
+
+    .icons i {
+        cursor: pointer;
+        margin-right: 25px;
+    }
+
+    .icons i:hover {
+        transform: scale(1.2);
+        transition: .3s;
+    }
+
 </style>
 
 <table class="primary">
@@ -41,10 +59,20 @@
     </thead>
     <tbody>
         {#each materials as material (material.id)}
-            <tr on:click={edit(material.id, material.name, material.price)}  class="product-row">
+            <tr>
                 <td>{material.name.toUpperCase()}</td>
                 <td>{currency.format(material.price)}</td>
-                <td><i class="fa fa-trash-o" aria-hidden="true"></i></td>
+                <td class="icons">
+                    <i
+                     on:click={edit(material.id, material.name, material.price)}
+                     class="fa fa-pencil-square-o"
+                     aria-hidden="true"></i>
+                    <i
+                     on:click|stopPropagation={remove(material.id)}
+                     class="fa fa-trash-o"
+                     aria-hidden="true"
+                    ></i>
+                </td>
             </tr>
         {/each}
     </tbody>

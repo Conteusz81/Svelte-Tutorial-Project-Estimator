@@ -4,6 +4,7 @@
     let id;
     let name = "";
     let price = 5;
+    $: mode = id ? "edytuj" : "dodaj"
 
     function edit(ev) {
         ({ id, name, price } = ev.detail)
@@ -23,7 +24,7 @@
 
 <main>
     <h1>Project Estimator</h1>
-    <Form bind:id bind:name bind:price />
+    <Form bind:id bind:name bind:price bind:mode />
 
-    <Table on:edit={edit} />
+    <Table on:edit={edit} bind:mode />
 </main>

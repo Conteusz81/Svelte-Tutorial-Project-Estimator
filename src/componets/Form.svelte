@@ -4,12 +4,14 @@
     export let id;
     export let name;
     export let price;
+    export let mode;
 
-    $: mode = id ? "edytuj" : "dodaj"
     $: canSubmit = name !== "" && price >= 0;
 
     function submit() {
         if (!canSubmit) { return; }
+
+        console.log(mode);
 
         if (mode === 'dodaj') {
             materialStore.add(name, +price.toFixed(2))
