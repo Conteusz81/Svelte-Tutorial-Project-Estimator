@@ -1,6 +1,6 @@
 # Product Estimator
 
-## The very simple app that estimate products.
+## The very simple app that estimates products.
 ### It's built on Svelte framework using writable store and locale storage.
 
 
