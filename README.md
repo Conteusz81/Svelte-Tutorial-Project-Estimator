@@ -15,7 +15,7 @@ https://conteusz81.github.io/Svelte-Tutorial-Project-Estimator/
 When you get the code, you can install dependencies and run the project in development mode with:
 
 ```bash
-cd svelte-app
+cd Svelte-Tutorial-Project-Estimator
 npm install
 ```
 
